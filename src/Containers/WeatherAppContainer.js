@@ -7,7 +7,7 @@ class WeatherAppContainer extends React.Component {
         super();
         this.state = {
             city: '',
-            data: []
+            data: ''
         }
         this.setCity = this.setCity.bind(this)
         this.fetchWeather = this.fetchWeather.bind(this)

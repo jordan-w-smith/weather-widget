@@ -1,8 +1,11 @@
 import React from 'react'
 
-const CurrentWeather = () => {
+const CurrentWeather = (props) => {
     return(
-        <p>Weather today...</p>
+        <>
+            <h2>{props.data.name}</h2>
+            {/* <p>Weather today...{props.data.weather}</p> */}
+        </>
     )
 }
 
