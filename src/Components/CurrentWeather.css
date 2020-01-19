@@ -1,0 +1,14 @@
+.current-weather-container {
+    background-color: lightblue;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 400px;
+}
+
+h2 {
+    margin-top: 0px;
+}
+
+img {
+    width: 200px;
+}
