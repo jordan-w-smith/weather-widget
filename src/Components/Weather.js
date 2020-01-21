@@ -3,6 +3,7 @@ import './Weather.css'
 
 const Weather = (props) => {
     return (
+        props.data !== '' ? 
         <div className="weather-container">
             <div className="type-container">
                 <p className="type" onClick={props.setWeatherType}>Today</p>
@@ -27,6 +28,7 @@ const Weather = (props) => {
                 </div>
             }
         </div>
+        : ""
     )
 }
 
