@@ -10,6 +10,7 @@ class WeatherAppContainer extends React.Component {
             country: '',
             countryCode: '',
             data: '',
+            forecastData: '',
             countries: ''
         }
         this.setCity = this.setCity.bind(this)
@@ -47,12 +48,22 @@ class WeatherAppContainer extends React.Component {
 
     fetchWeather(event) {
         event.preventDefault()
-        let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + this.state.city + ',' + this.state.country + '&APPID=31505488a674c0ef188d19cd75e796e0'
+        let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + this.state.city + ',' + this.state.country + '&APPID=31505488a674c0ef188d19cd75e796e0&units=metric'
         fetch(url)
             .then(res => res.json())
             .then(JSON.stringify.res)
             .then(data => this.setState({
                 data: data
+            }))
+        let ts = Math.round((new Date()).getTime() / 1000)
+        // ts += 86400;
+        // ts += 28800;
+        let forecastUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=' + this.state.city + ',' + this.state.country + '&APPID=31505488a674c0ef188d19cd75e796e0&units=metric&cnt=4&dt=' + ts
+        
+        fetch(forecastUrl)
+            .then(res => res.json())
+            .then(forecastData => this.setState({
+                forecastData : forecastData.list[3]
             }))
     }
 
@@ -60,7 +71,7 @@ class WeatherAppContainer extends React.Component {
         return(
             <>
                 <InputLocation countries={this.state.countries} city={this.state.city} country={this.state.country} fetchWeather={this.fetchWeather} setCity={this.setCity} setCountry={this.setCountry} setCountryCode={this.setCountryCode}></InputLocation>
-                <CurrentWeather data={this.state.data}></CurrentWeather>
+                <CurrentWeather data={this.state.data} forecastData={this.state.forecastData}></CurrentWeather>
             </>
         )
     }

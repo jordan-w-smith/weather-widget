@@ -3,6 +3,7 @@
     padding-top: 30px;
     padding-bottom: 30px;
     width: 400px;
+    padding-left: 30px;
 }
 
 h2 {
@@ -11,4 +12,8 @@ h2 {
 
 img {
     width: 200px;
+}
+
+.description {
+    text-transform: capitalize;
 }

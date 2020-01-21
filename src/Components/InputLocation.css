@@ -2,19 +2,32 @@
     background-color: grey;
     width: 400px;
     padding-bottom: 30px;
+    padding-left: 30px;
+    padding-top: 30px;
 }
 
 input {
     display: block;
     margin-top: 10px;
+    height: 40px;
+    border-radius: 5px;
 }
 
 select {
     margin-top: 10px;
     margin-bottom: 10px;
+    height: 40px;
+}
+
+option {
+    padding-top: 5px;
 }
 
 label {
     display: block;
     padding-top:10px;
+}
+
+h1 {
+    margin-top: 0;
 }
