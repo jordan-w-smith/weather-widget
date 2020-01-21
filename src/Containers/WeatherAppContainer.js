@@ -1,6 +1,6 @@
 import React from 'react'
 import InputLocation from '../Components/InputLocation'
-import CurrentWeather from '../Components/CurrentWeather'
+import Weather from '../Components/Weather'
 
 class WeatherAppContainer extends React.Component {
     constructor() {
@@ -11,13 +11,14 @@ class WeatherAppContainer extends React.Component {
             countryCode: '',
             data: '',
             forecastData: '',
-            countries: ''
+            countries: '',
+            weatherType: 'current'
         }
         this.setCity = this.setCity.bind(this)
         this.setCountry = this.setCountry.bind(this)
         this.setCountryCode = this.setCountryCode.bind(this)
         this.fetchWeather = this.fetchWeather.bind(this)
-        
+        this.setWeatherType = this.setWeatherType.bind(this)
     }
 
     componentDidMount() {
@@ -46,6 +47,12 @@ class WeatherAppContainer extends React.Component {
         })
     }
 
+    setWeatherType() {
+        this.state.weatherType === 'current' ? 
+        this.setState({weatherType: 'tomorrow'})
+        : this.setState({weatherType: 'current'})
+    }
+
     fetchWeather(event) {
         event.preventDefault()
         let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + this.state.city + ',' + this.state.country + '&APPID=31505488a674c0ef188d19cd75e796e0&units=metric'
@@ -71,7 +78,7 @@ class WeatherAppContainer extends React.Component {
         return(
             <>
                 <InputLocation countries={this.state.countries} city={this.state.city} country={this.state.country} fetchWeather={this.fetchWeather} setCity={this.setCity} setCountry={this.setCountry} setCountryCode={this.setCountryCode}></InputLocation>
-                <CurrentWeather data={this.state.data} forecastData={this.state.forecastData}></CurrentWeather>
+                <Weather data={this.state.data} forecastData={this.state.forecastData} setWeatherType={this.setWeatherType} weatherType={this.state.weatherType}></Weather>
             </>
         )
     }

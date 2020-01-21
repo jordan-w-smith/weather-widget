@@ -1,0 +1,37 @@
+.weather-container {
+    background-color: lightblue;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 400px;
+    padding-left: 30px;
+}
+
+h2 {
+    margin-top: 0px;
+}
+
+img {
+    width: 200px;
+}
+
+.description {
+    text-transform: capitalize;
+}
+
+.type {
+    display: inline;
+    margin-right: 10px;
+    padding: 7px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: beige;
+}
+
+.type:hover {
+    color: gray;
+    cursor: pointer;
+}
+
+.type-container {
+    margin-bottom: 30px;
+}
