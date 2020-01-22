@@ -6,7 +6,7 @@ class WeatherAppContainer extends React.Component {
     constructor() {
         super();
         this.state = {
-            city: 'birmingham',
+            city: '',
             country: '',
             countryCode: '',
             data: '',
@@ -60,25 +60,39 @@ class WeatherAppContainer extends React.Component {
             .then(res => res.json())
             .then(JSON.stringify.res)
             .then(data => this.setState({
-                data: data
+                data: data !== '' ? data : ''
             }))
         let ts = Math.round((new Date()).getTime() / 1000)
         // ts += 86400;
         // ts += 28800;
         let forecastUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=' + this.state.city + ',' + this.state.country + '&APPID=31505488a674c0ef188d19cd75e796e0&units=metric&cnt=4&dt=' + ts
-        
-        fetch(forecastUrl)
-            .then(res => res.json())
-            .then(forecastData => this.setState({
-                forecastData : forecastData.list[3]
+            fetch(forecastUrl)
+                .then(res => res.json())
+                .then(forecastData => this.setState({
+                    forecastData : typeof forecastData.list !== 'undefined' ? forecastData.list[3] : ''
             }))
+
     }
 
     render() {
         return(
             <>
-                <InputLocation countries={this.state.countries} city={this.state.city} country={this.state.country} fetchWeather={this.fetchWeather} setCity={this.setCity} setCountry={this.setCountry} setCountryCode={this.setCountryCode}></InputLocation>
-                <Weather data={this.state.data} forecastData={this.state.forecastData} setWeatherType={this.setWeatherType} weatherType={this.state.weatherType}></Weather>
+                <InputLocation 
+                    countries={this.state.countries} 
+                    city={this.state.city} 
+                    country={this.state.country} 
+                    fetchWeather={this.fetchWeather} 
+                    setCity={this.setCity} 
+                    setCountry={this.setCountry} 
+                    setCountryCode={this.setCountryCode}
+                ></InputLocation>
+                <Weather 
+                    data={this.state.data} 
+                    forecastData={this.state.forecastData} 
+                    setWeatherType={this.setWeatherType} 
+                    weatherType={this.state.weatherType} 
+                    city={this.state.city}
+                ></Weather>
             </>
         )
     }
